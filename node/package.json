@@ -1,0 +1,14 @@
+{
+  "name": "x402-agent-gateway",
+  "version": "0.1.0",
+  "description": "One endpoint for any agent capability: resolve a task, route it to the best provider, pay per call in USDC over x402.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": { ".": "./src/index.js" },
+  "bin": { "agent-gateway": "./bin/cli.js" },
+  "files": ["src", "bin", "README.md"],
+  "scripts": { "test": "node --test test/" },
+  "keywords": ["x402", "agent", "gateway", "mcp", "a2a", "usdc", "ai"],
+  "license": "MIT",
+  "engines": { "node": ">=20" }
+}
