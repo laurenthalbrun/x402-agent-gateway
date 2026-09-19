@@ -1,0 +1,12 @@
+[project]
+name = "x402-agent-gateway"
+version = "0.1.0"
+description = "One endpoint for any agent capability: resolve a task, route it to the best provider, pay per call in USDC over x402."
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["x402", "agent", "gateway", "mcp", "a2a", "usdc", "ai"]
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
