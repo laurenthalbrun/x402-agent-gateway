@@ -235,6 +235,39 @@ Both live in this repository under `node/` and `python/`. Called without a payme
 fetch, `usBrief` raises `PaymentRequired` carrying the x402 challenge, so you can pay it with
 whatever tooling you already have.
 
+## Find a capability without knowing its name
+
+The catalogue has 76 routes. You do not have to read them. Ask in words, free, no wallet:
+
+```bash
+curl -s "https://api.x-402.online/v1/capabilities/search?query=get+product+prices+from+a+page"
+```
+
+You get the five best matches with route, price, and whether each is buyable right now.
+A capability that does not exist yet is returned as `GAP`, never dressed up as an offer.
+
+## Ten routes added on 2026-09-21
+
+Each one runs on an engine that already has paying buyers, has no model in its path, and
+returns HTTP 402 with its own unique amount. Prices in USDC.
+
+| route | price | what you get |
+|---|---|---|
+| `POST /v1/web/tables` | 0.005004 | every HTML table on a page as JSON rows, headers detected |
+| `POST /v1/web/jsonld` | 0.005005 | the JSON-LD blocks and Open Graph tags a page declares |
+| `POST /v1/web/contacts` | 0.006001 | emails, phones and social links visibly published on a page |
+| `POST /v1/web/prices` | 0.006002 | every amount with its currency and context, plus the schema.org offer |
+| `POST /v1/web/changed` | 0.005006 | has the page changed since the checksum you kept |
+| `GET /v1/email/verify` | 0.003002 | syntax, MX, SPF, DMARC, disposable, role; no message sent |
+| `GET /v1/domain/health` | 0.004001 | DNS records, certificate expiry, redirect chain, security headers |
+| `GET /v1/x402/inspect` | 0.003003 | does an x402 endpoint still return a valid challenge, and what it says |
+| `GET /v1/chain/address` | 0.004002 | USDC transfers of an address on Base, x402 settlements identified |
+| `POST /v1/search/sources` | 0.012003 | search, then the main content of the top pages, in one call |
+
+The browser routes fetch through a French residential IP with a real Chromium. The DNS and
+chain routes run from our infrastructure and say so. `email/verify` does not open an SMTP
+session and states that mailbox existence is not checked.
+
 ## What this is not
 
 Not investment advice. `/v1/us/brief` reports what SEC EDGAR contains and cites it. It never
