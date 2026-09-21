@@ -1,6 +1,20 @@
 # x402 Agent Gateway
 
-**US company intelligence for AI agents, paid per call in USDC, no account.**
+**Pay-per-call APIs for AI agents, settled in USDC. No account, no API key.**
+
+Two things agents buy here most:
+
+| route | price | what you send | what you get back |
+|---|---|---|---|
+| `POST /v1/extract` | `0.005` | `{"url":"…"}` | the page as clean markdown, fetched through a French residential IP with a real Chromium, so sites that block datacenter IPs still answer |
+| `POST /v1/us/brief` | `0.040004` | `{"ticker":"AAPL"}` | a sourced SEC EDGAR briefing with XBRL metrics, resolvable filing sources and a citation check |
+
+Walkthroughs: **[EXTRACT.md](EXTRACT.md)** for web content, **[USE_CASE.md](USE_CASE.md)** for
+company intelligence. Runnable calls in **[examples/](examples/)**.
+
+---
+
+**US company intelligence, in detail.**
 
 | | |
 |---|---|
