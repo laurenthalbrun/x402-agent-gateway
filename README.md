@@ -237,16 +237,31 @@ whatever tooling you already have.
 
 ## Find a capability without knowing its name
 
-The catalogue has 76 routes. You do not have to read them. Ask in words, free, no wallet:
+The catalogue has 80 routes in five families. You do not have to read them. Two free calls,
+no wallet:
 
 ```bash
-curl -s "https://api.x-402.online/v1/capabilities/search?query=get+product+prices+from+a+page"
+# the families, each with its job and its routes
+curl -s https://api.x-402.online/v1/catalog
+
+# your need in words, five best matches with price and whether each is buyable now
+curl -s "https://api.x-402.online/v1/capabilities/search?query=find+current+prices+for+products+on+a+webpage"
 ```
 
-You get the five best matches with route, price, and whether each is buyable right now.
-A capability that does not exist yet is returned as `GAP`, never dressed up as an offer.
+| family | job |
+|---|---|
+| WEB INTELLIGENCE | turn any page into structured facts: prices, contacts, tables, declared data, changes |
+| CONTENT ACCESS | read pages your crawler cannot, with or without a verdict on the retrieval |
+| COMPANY INTELLIGENCE | know who a company is, what it filed, whether its domain and payments check out |
+| VERIFICATION | check an email, a domain, an x402 endpoint or a wallet before acting on it |
+| SEARCH | find pages and headlines, and read them in the same call |
 
-## Ten routes added on 2026-09-21
+Every route is described by the job it does, in an agent's words, on every surface: OpenAPI,
+MCP, the A2A card, `llms.txt` and `/.well-known/x402`. A capability that is not available
+yet comes back as `GAP`, never dressed up as an offer. Buyer counts shown are on-chain
+measurements dated 2026-09-21, not forecasts.
+
+## Fourteen routes added on 2026-09-21
 
 Each one runs on an engine that already has paying buyers, has no model in its path, and
 returns HTTP 402 with its own unique amount. Prices in USDC.
@@ -263,6 +278,10 @@ returns HTTP 402 with its own unique amount. Prices in USDC.
 | `GET /v1/x402/inspect` | 0.003003 | does an x402 endpoint still return a valid challenge, and what it says |
 | `GET /v1/chain/address` | 0.004002 | USDC transfers of an address on Base, x402 settlements identified |
 | `POST /v1/search/sources` | 0.012003 | search, then the main content of the top pages, in one call |
+| `POST /v1/web/headings` | 0.004003 | the document outline: every heading with level and anchor |
+| `POST /v1/web/forms` | 0.005007 | every form and its fields, read only, nothing submitted |
+| `POST /v1/web/images` | 0.005008 | every image with resolved URL, alt text and dimensions |
+| `POST /v1/web/navigation` | 0.004004 | header, footer and nav zones with their links |
 
 The browser routes fetch through a French residential IP with a real Chromium. The DNS and
 chain routes run from our infrastructure and say so. `email/verify` does not open an SMTP
