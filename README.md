@@ -287,6 +287,20 @@ The browser routes fetch through a French residential IP with a real Chromium. T
 chain routes run from our infrastructure and say so. `email/verify` does not open an SMTP
 session and states that mailbox existence is not checked.
 
+## Routing engine, and a shadow experiment with Jev
+
+Capability search is ranked by a deterministic engine: rarity-weighted terms, short
+synonyms, two-word phrases, and a bonus for capabilities with measured buyers. It runs in
+about one millisecond and needs no model. On a 119-case benchmark with hand-written ground
+truth it puts the expected capability first 75 % of the time and in the top three 84 % of
+the time, and holds the same accuracy when the candidate catalogue grows from 80 to 194.
+
+In parallel, and off by default, the repository carries a shadow integration of
+[Jev](https://typesafe.ai) as an alternative decision engine. With `JEV_SHADOW_MODE=true`
+Jev is asked the same question beside the current engine and the two answers are compared
+in metrics; it never decides and never blocks a request. The benchmark, the fixture and
+the fallback tests are in the repository. No routing decision is taken by Jev today.
+
 ## What this is not
 
 Not investment advice. `/v1/us/brief` reports what SEC EDGAR contains and cites it. It never
