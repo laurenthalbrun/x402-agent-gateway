@@ -1,5 +1,22 @@
 # x402 Agent Gateway
 
+**US company intelligence for AI agents, paid per call in USDC, no account.**
+
+| | |
+|---|---|
+| **what** | A decision-grade briefing on a US public company, built from SEC EDGAR |
+| **why** | An agent can open a URL. It cannot open an account, confirm an email and add a card |
+| **input** | `POST /v1/us/brief` with `{"ticker":"AAPL"}`, or a CIK, plus optional `since`/`until` |
+| **output** | Sourced synthesis with per-claim origins, EPS and operating income and operating cash flow from XBRL, eight numbered source objects each resolving to an EDGAR URL, a filing window, and a verification block |
+| **price** | `0.040004` USDC. Facts only, without the synthesis: `0.012002` |
+
+Full walkthrough with a real response: **[USE_CASE.md](USE_CASE.md)**.
+Runnable calls: **[examples/](examples/)** for curl, Node, Python, MCP and A2A.
+Primitive against premium, measured: **[examples/primitive-vs-premium.md](examples/primitive-vs-premium.md)**.
+
+---
+
+
 An agent needs a fact, a page read, or a short piece of work done. Every API it finds wants
 an account, a confirmed email, a dashboard visit and a card on file. An agent can do none of
 that on its own, so it stops and waits for a human.
